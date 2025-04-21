@@ -127,14 +127,9 @@ const [jacketsDenim, setJacketsDenim] = useState(0);
   const [ethicalPlatforms, setEthicalPlatforms] = useState(null);
 
   const handleSubmitButton = async () => {
-    try {
-      // Dynamically select API URL based on environment
-      const apiUrl =
-      process.env.NODE_ENV === 'production'
-        ? 'https://dissertation-shivanirajani-shivanirajanis-projects.vercel.app/api/calculate-footprint'  // Correct Vercel URL
-        : 'http://localhost:3001/api/calculate-footprint';  // Local development URL
-    
+
   
+    try {
       const payload = {
         tshirtsRecycledCotton,
         tshirtsCotton,
@@ -149,14 +144,14 @@ const [jacketsDenim, setJacketsDenim] = useState(0);
         dressesRecycledViscose,
         dressesPolyester,
         dressesRecycledPolyester,
-        trousersDenim,
-        trousersCottonJeans,
-        trousersPolyester,
+        trousersDenim,        
+        trousersCottonJeans,        
+        trousersPolyester,    
         jacketsSynthetic,
         jacketsSkinLeather,
         jacketsDown,
         jacketsDenim,
-        monthlyLoads,
+        monthlyLoads,   
         detergentType,
         tumbleDryLoads,
         washTemps,
@@ -166,6 +161,7 @@ const [jacketsDenim, setJacketsDenim] = useState(0);
         trousers,
         jackets,
         denimJeans,
+        
         secondHandTShirts,
         secondHandKnitwear,
         secondHandDresses,
@@ -179,7 +175,7 @@ const [jacketsDenim, setJacketsDenim] = useState(0);
       };
   
       // Send data to the backend
-      const response = await fetch(apiUrl, {
+      const response = await fetch('http://localhost:3001/api/calculate-footprint', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -194,12 +190,14 @@ const [jacketsDenim, setJacketsDenim] = useState(0);
       const result = await response.json();
       console.log('Server response:', result); // Log the response from the server
   
-      // Navigate to the results page with the response data
+      // Now navigate to /results-and-recommendations with the result data
       navigate('/results-and-recommendations', { state: { result } });
+  
     } catch (error) {
       console.error('Error sending data:', error);
     }
   };
+  
   
 
 
