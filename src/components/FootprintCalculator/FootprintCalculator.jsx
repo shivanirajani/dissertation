@@ -127,9 +127,13 @@ const [jacketsDenim, setJacketsDenim] = useState(0);
   const [ethicalPlatforms, setEthicalPlatforms] = useState(null);
 
   const handleSubmitButton = async () => {
-
-  
     try {
+      // Dynamically select API URL based on environment
+      const apiUrl =
+        process.env.NODE_ENV === 'production'
+          ? 'https://<your-app-name>.vercel.app/api/calculate-footprint'  // Replace with your Vercel app URL
+          : 'http://localhost:3001/api/calculate-footprint';  // Local development URL
+  
       const payload = {
         tshirtsRecycledCotton,
         tshirtsCotton,
@@ -144,14 +148,14 @@ const [jacketsDenim, setJacketsDenim] = useState(0);
         dressesRecycledViscose,
         dressesPolyester,
         dressesRecycledPolyester,
-        trousersDenim,        
-        trousersCottonJeans,        
-        trousersPolyester,    
+        trousersDenim,
+        trousersCottonJeans,
+        trousersPolyester,
         jacketsSynthetic,
         jacketsSkinLeather,
         jacketsDown,
         jacketsDenim,
-        monthlyLoads,   
+        monthlyLoads,
         detergentType,
         tumbleDryLoads,
         washTemps,
@@ -161,7 +165,6 @@ const [jacketsDenim, setJacketsDenim] = useState(0);
         trousers,
         jackets,
         denimJeans,
-        dresses,
         secondHandTShirts,
         secondHandKnitwear,
         secondHandDresses,
@@ -175,7 +178,7 @@ const [jacketsDenim, setJacketsDenim] = useState(0);
       };
   
       // Send data to the backend
-      const response = await fetch('http://localhost:3001/api/calculate-footprint', {
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -190,14 +193,12 @@ const [jacketsDenim, setJacketsDenim] = useState(0);
       const result = await response.json();
       console.log('Server response:', result); // Log the response from the server
   
-      // Now navigate to /results-and-recommendations with the result data
+      // Navigate to the results page with the response data
       navigate('/results-and-recommendations', { state: { result } });
-  
     } catch (error) {
       console.error('Error sending data:', error);
     }
   };
-  
   
 
 
