@@ -130,9 +130,10 @@ const [jacketsDenim, setJacketsDenim] = useState(0);
     try {
       // Dynamically select API URL based on environment
       const apiUrl =
-        process.env.NODE_ENV === 'production'
-          ? 'https://<your-app-name>.vercel.app/api/calculate-footprint'  // Replace with your Vercel app URL
-          : 'http://localhost:3001/api/calculate-footprint';  // Local development URL
+      process.env.NODE_ENV === 'production'
+        ? 'https://dissertation-shivanirajani-shivanirajanis-projects.vercel.app/api/calculate-footprint'  // Correct Vercel URL
+        : 'http://localhost:3001/api/calculate-footprint';  // Local development URL
+    
   
       const payload = {
         tshirtsRecycledCotton,
