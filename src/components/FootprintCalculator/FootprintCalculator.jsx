@@ -175,7 +175,7 @@ const [jacketsDenim, setJacketsDenim] = useState(0);
       };
   
       // Send data to the backend
-      const response = await fetch('https://dissertation-bd8ghgdd2-shivanirajanis-projects.vercel.app/api/calculate-footprint', {
+      const response = await fetch('http://localhost:3001/api/calculate-footprint', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
