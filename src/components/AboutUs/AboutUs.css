@@ -1,0 +1,710 @@
+/* ESTILOS CSS PARA OUTSOURCING */
+
+/* Estilo para el contenedor principal de outsourcing */
+.outsourcing-wrapper {
+    padding-top: 1rem;
+    
+  }
+  
+  /* Estilo del contenedor del contenido de outsourcing */
+  .outsourcing-content-container {
+    display: flex;
+    gap: 3rem;
+    margin-top: 4rem;
+  }
+
+  .circle{
+    height: 4rem;
+    width: 4rem;
+    background: var(--pink-gradient);
+    border-radius: 999px;
+    margin-left: 220px;
+    z-index: -1;
+    
+  }
+
+.outsourcing-title>h1{
+  font-weight: 600;
+  font-size: 3.8rem;
+  line-height: 4rem;
+  color: #c9c3bd;
+  margin-top: -40px;
+}
+  
+  /* Estilo de la cabecera de outsourcing */
+  .outsourcing-head {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: left;
+    margin-left: 300px;
+  }
+  
+  /* Estilo del contenedor de selección */
+  .selection-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+    margin-top: -15rem;
+    margin-bottom: -10rem;
+    margin-left: -90px;
+    width: 800px;
+  }
+  
+  /* Estilo del contenedor de sección */
+  .selection-container .section-container {
+    width: 100%;
+    padding: 60px 40px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background-color: #897b4a;
+    border: 2px solid #d3c7c8;
+ 
+
+    
+  }
+  
+  /* Estilo al interactuar con el contenedor de sección */
+  .selection-container .section-container:hover {
+    
+    color: #7c6f3e;
+  }
+  
+  /* Estilo de la sección cuando está activa */
+  .selection-container .section-container.active {
+    background-color: rgba(51, 51, 51, 0.5);
+    border: 3px solid #7c6f3e;
+    color: var(--secondary-color);
+  }
+  
+  /* Estilo del contenedor de texto */
+  .text-container {
+    right: 0.5rem;
+    height: 100%;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0rem 1rem;
+    border-radius: 999px;
+    color: #d3c7c8;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+  
+  /* Estilo de la cabecera de misión */
+  .mission-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  /* Estilo del contenedor del logo */
+  .o-logo-container {
+    margin-left: 20px;
+  }
+  
+  /* Estilo de icono al activarse */
+  .selection-container .section-container.active .icon-container {
+    gap: 1rem;
+  }
+  
+  /* Estilo de texto de la sección */
+  .selection-container .section-container span {
+    color: #7c6f3e;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  
+  /* Estilo de texto de la sección cuando está activa */
+  .selection-container .section-container.active span {
+    color: #7c6f3e;
+    font-weight: 600;
+  
+  }
+  
+  /* Estilo del contenedor de iconos */
+  .selection-container .icon-container {
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Estilo de contenedor de sección */
+  .selection-container .section-container {
+    cursor: pointer;
+    width: 300px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    transition: background-color 0.3s ease;
+    margin: 10px;
+    border-radius: 2px;
+    margin-top: 10px;
+  }
+  
+  /* Estilo del contenido de outsourcing */
+  .outsourcing-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-left: 300px;
+    padding: 20px;
+    margin: 20px auto;
+    min-height: 10px;
+    border: 1px;
+    margin-top: 60px;
+  }
+  
+  /* Característica de bloque */
+  .block-feature1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 300px;
+    height: 400px;
+    box-sizing: border-box;
+    padding: 1rem;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    background-color: rgba(51, 51, 51, 0.5);
+    background-image: url('../../images/image1.jpeg');
+    background-size: cover; /* Ensures the background image covers the entire area */
+    background-position: center; /* Centers the background image */
+    background-repeat: no-repeat; /* Prevents the background image from repeating */
+    margin: 5px;
+  }
+
+  .block-feature2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 300px;
+    height: 400px;
+    box-sizing: border-box;
+    padding: 1rem;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    background-color: rgba(51, 51, 51, 0.5);
+    background-image: url('../../images/image2.jpeg');
+    background-size: cover; /* Ensures the background image covers the entire area */
+    background-position: center; /* Centers the background image */
+    background-repeat: no-repeat; /* Prevents the background image from repeating */
+    margin: 5px;
+    
+  }
+
+  .block-feature3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 300px;
+    height: 400px;
+    box-sizing: border-box;
+    padding: 1rem;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    background-color: rgba(51, 51, 51, 0.5);
+    background-image: url('../../images/image3.jpeg');
+    background-size: cover; /* Ensures the background image covers the entire area */
+    background-position: center; /* Centers the background image */
+    background-repeat: no-repeat; /* Prevents the background image from repeating */
+    margin: 5px;
+  }
+
+   /* Característica de bloque */
+   .block-feature4 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 300px;
+    height: 400px;
+    box-sizing: border-box;
+    padding: 1rem;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    background-color: rgba(51, 51, 51, 0.5);
+    background-image: url('../../images/image4.jpeg');
+    background-size: cover; /* Ensures the background image covers the entire area */
+    background-position: center; /* Centers the background image */
+    background-repeat: no-repeat; /* Prevents the background image from repeating */
+    margin: 5px;
+  }
+
+  .block-feature5 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 300px;
+    height: 400px;
+    box-sizing: border-box;
+    padding: 1rem;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    background-color: rgba(51, 51, 51, 0.5);
+    background-image: url('../../images/image5.jpeg');
+    background-size: cover; /* Ensures the background image covers the entire area */
+    background-position: center; /* Centers the background image */
+    background-repeat: no-repeat; /* Prevents the background image from repeating */
+    margin: 5px;
+
+  }
+
+  .block-feature6 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 300px;
+    height: 400px;
+    box-sizing: border-box;
+    padding: 1rem;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    background-color: rgba(51, 51, 51, 0.5);
+    background-image: url('../../images/image6.jpeg');
+    background-size: cover; /* Ensures the background image covers the entire area */
+    background-position: center; /* Centers the background image */
+    background-repeat: no-repeat; /* Prevents the background image from repeating */
+    margin: 5px;
+  }
+
+  .block-feature7 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 300px;
+    height: 400px;
+    box-sizing: border-box;
+    padding: 1rem;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    background-color: rgba(51, 51, 51, 0.5);
+    background-image: url('../../images/image7.jpeg');
+    background-size: cover; /* Ensures the background image covers the entire area */
+    background-position: center; /* Centers the background image */
+    background-repeat: no-repeat; /* Prevents the background image from repeating */
+    margin: 5px;
+  }
+  
+  .block-feature8 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 300px;
+    height: 400px;
+    box-sizing: border-box;
+    padding: 1rem;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    background-color: rgba(51, 51, 51, 0.5);
+    background-image: url('../../images/image8.jpeg');
+    background-size: cover; /* Ensures the background image covers the entire area */
+    background-position: center; /* Centers the background image */
+    background-repeat: no-repeat; /* Prevents the background image from repeating */
+    margin: 5px;
+  }
+  
+  .block-feature9 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 300px;
+    height: 400px;
+    box-sizing: border-box;
+    padding: 1rem;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    background-color: rgba(51, 51, 51, 0.5);
+    background-image: url('../../images/image9.jpeg');
+    background-size: cover; /* Ensures the background image covers the entire area */
+    background-position: center; /* Centers the background image */
+    background-repeat: no-repeat; /* Prevents the background image from repeating */
+    margin: 5px;
+  }
+  
+  
+  
+  /* Contenedor de características de bloque */
+  .block-features {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* Contenedor del contenido de outsourcing */
+  .outsourcing-content-container {
+    width: 100%;
+    max-width: 1100px;
+    height: 600px;
+    position: relative;
+    margin: 10px auto;
+    margin-top: 20px;
+  }
+  
+  /* Cabecera de outsourcing desplazada */
+  .outsourcing-head.scrolled {
+    color: #d3c7c8;
+  }
+  
+  /* Estilos de texto cuando se desplaza la envoltura de outsourcing */
+  .outsourcing-wrapper.scrolled .sec-titles,
+  .outsourcing-wrapper.scrolled .texts,
+  .outsourcing-wrapper.scrolled .block-feature span {
+    color: #d3c7c8;
+  }
+  
+  /* Contenedor de outsourcing para pantallas pequeñas */
+  .outsourcing-container.small-screen {
+    flex-direction: column;
+  }
+  
+  /* Estilos para dispositivos de pantalla pequeña */
+  @media only screen and (max-width: 768px) {
+    .outsourcing-content-container {
+      flex-direction: column;
+     
+    }
+    .outsourcing-wrapper {
+      padding-top: 10rem;
+    }
+    .outsourcing-head {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      align-items: left;
+      margin-left: 20px;
+    
+    }
+    .circle{
+      height: 3rem;
+      width: 3rem;
+      background: var(--pink-gradient);
+      border-radius: 999px;
+      margin-left: 110px;
+      z-index: -1;
+      
+    }
+
+  
+    .selection-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100px;
+      margin: 0;
+    }
+    .selection-container .dropdown-menu {
+      width: 100%;
+    }
+    .selection-container .dropdown-menu option {
+      width: 100%;
+    }
+    .sec-title.left-align {
+      text-align: left;
+    }
+    .selection-container select {
+      width: calc(100% - 100px);
+      padding: 5px;
+      margin: 0 20px;
+      border: 1px solid #cbd6db;
+      border-radius: 8px;
+      background-color: #fff;
+      color: #000;
+      font-size: 16px;
+      appearance: none;
+    }
+    .selection-container select option {
+      background-color: #000;
+      color: #d3c7c8;
+    }
+    .block-features {
+      flex-direction: column;
+      align-items: center;
+    }
+    .block-feature {
+      width: 100%;
+      align-items: center;
+      text-align: center;
+      background-color: var(--secondary-color);
+      margin-left: 20px;
+    }
+    .sec-titles {
+      font-size: 2rem;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 1%;
+    }
+    .title {
+      font-size: 1.6rem;
+    }
+    .texts {
+      color: #d3c7c8;
+      font-size: 1rem;
+    }
+  }
+  
+  /* Estilos para dispositivos de pantalla pequeña */
+  
+  @media only screen and (max-width: 768px) {
+    .sourcing-container {
+      margin: 20px;
+    }
+    .outsourcing-content-container .dropdown-menu {
+      width: 70%;
+      margin-top: 20px;
+      margin: 20px;
+    }
+    .outsourcing-content-container .dropdown-menu option {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 1024px) {
+    .sec-titles {
+      font-size: 1.4rem;
+    }
+    .title {
+      font-size: 2rem;
+    }
+  }
+  
+
+
+  @media (max-width: 640px) {
+
+
+    .outsourcing-title>h1{
+        font-size: 2rem;
+        line-height: 3rem;
+    }
+
+    .sec-titles {
+      font-size: 1.em;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .block-feature1{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 300px;
+      height: 400px;
+      box-sizing: border-box;
+      padding: 1rem;
+      margin-top: 5px;
+      margin-bottom: 10px;
+      background-color: rgba(51, 51, 51, 0.5);
+      background-image: url('../../images/image1.jpeg');
+      background-size: cover; /* Ensures the background image covers the entire area */
+      background-position: center; /* Centers the background image */
+      background-repeat: no-repeat; /* Prevents the background image from repeating */
+      margin-right: 20px;
+    }
+
+
+    .block-feature2{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 300px;
+      height: 400px;
+      box-sizing: border-box;
+      padding: 1rem;
+      margin-top: 5px;
+      margin-bottom: 10px;
+      background-color: rgba(51, 51, 51, 0.5);
+      background-image: url('../../images/image2.jpeg');
+      background-size: cover; /* Ensures the background image covers the entire area */
+      background-position: center; /* Centers the background image */
+      background-repeat: no-repeat; /* Prevents the background image from repeating */
+      margin-right: 20px;
+    }
+
+
+    .block-feature3{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 300px;
+      height: 400px;
+      box-sizing: border-box;
+      padding: 1rem;
+      margin-top: 5px;
+      margin-bottom: 10px;
+      background-color: rgba(51, 51, 51, 0.5);
+      background-image: url('../../images/image3.jpeg');
+      background-size: cover; /* Ensures the background image covers the entire area */
+      background-position: center; /* Centers the background image */
+      background-repeat: no-repeat; /* Prevents the background image from repeating */
+      margin-right: 20px;
+    }
+
+
+    .block-feature4{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 300px;
+      height: 400px;
+      box-sizing: border-box;
+      padding: 1rem;
+      margin-top: 5px;
+      margin-bottom: 10px;
+      background-color: rgba(51, 51, 51, 0.5);
+      background-image: url('../../images/image4.jpeg');
+      background-size: cover; /* Ensures the background image covers the entire area */
+      background-position: center; /* Centers the background image */
+      background-repeat: no-repeat; /* Prevents the background image from repeating */
+      margin-right: 20px;
+    }
+
+    .block-feature5{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 300px;
+      height: 400px;
+      box-sizing: border-box;
+      padding: 1rem;
+      margin-top: 5px;
+      margin-bottom: 10px;
+      background-color: rgba(51, 51, 51, 0.5);
+      background-image: url('../../images/image5.jpeg');
+      background-size: cover; /* Ensures the background image covers the entire area */
+      background-position: center; /* Centers the background image */
+      background-repeat: no-repeat; /* Prevents the background image from repeating */
+      margin-right: 20px;
+    }
+
+    .block-feature6{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 300px;
+      height: 400px;
+      box-sizing: border-box;
+      padding: 1rem;
+      margin-top: 5px;
+      margin-bottom: 10px;
+      background-color: rgba(51, 51, 51, 0.5);
+      background-image: url('../../images/image6.jpeg');
+      background-size: cover; /* Ensures the background image covers the entire area */
+      background-position: center; /* Centers the background image */
+      background-repeat: no-repeat; /* Prevents the background image from repeating */
+      margin-right: 20px;
+    }
+
+    .block-feature7{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 300px;
+      height: 400px;
+      box-sizing: border-box;
+      padding: 1rem;
+      margin-top: 5px;
+      margin-bottom: 10px;
+      background-color: rgba(51, 51, 51, 0.5);
+      background-image: url('../../images/image7.jpeg');
+      background-size: cover; /* Ensures the background image covers the entire area */
+      background-position: center; /* Centers the background image */
+      background-repeat: no-repeat; /* Prevents the background image from repeating */
+      margin-right: 20px;
+    }
+
+    .block-feature8{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 300px;
+      height: 400px;
+      box-sizing: border-box;
+      padding: 1rem;
+      margin-top: 5px;
+      margin-bottom: 10px;
+      background-color: rgba(51, 51, 51, 0.5);
+      background-image: url('../../images/image8.jpeg');
+      background-size: cover; /* Ensures the background image covers the entire area */
+      background-position: center; /* Centers the background image */
+      background-repeat: no-repeat; /* Prevents the background image from repeating */
+      margin-right: 20px;
+    }
+
+    .block-feature9{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 300px;
+      height: 400px;
+      box-sizing: border-box;
+      padding: 1rem;
+      margin-top: 5px;
+      margin-bottom: 10px;
+      background-color: rgba(51, 51, 51, 0.5);
+      background-image: url('../../images/image9.jpeg');
+      background-size: cover; /* Ensures the background image covers the entire area */
+      background-position: center; /* Centers the background image */
+      background-repeat: no-repeat; /* Prevents the background image from repeating */
+      margin-right: 20px;
+    }
+    
+    
+    
+
+  } 
+
+
+  
