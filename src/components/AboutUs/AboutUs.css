@@ -76,7 +76,7 @@
   
   /* Estilo de la sección cuando está activa */
   .selection-container .section-container.active {
-    background-color: rgba(51, 51, 51, 0.5);
+    background-color: #33333380;
     border: 3px solid #7c6f3e;
     color: var(--secondary-color);
   }

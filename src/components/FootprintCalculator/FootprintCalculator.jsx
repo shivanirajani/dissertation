@@ -96,7 +96,7 @@ const [trousersPolyester, setTrousersPolyester] = useState(0);
 const [jacketsSynthetic, setJacketsSynthetic] = useState(0);
 const [jacketsSkinLeather, setJacketsSkinLeather] = useState(0);
 const [jacketsDown, setJacketsDown] = useState(0);
-const [jacketsDenim, setJacketsDenim] = useState(0);
+
 
 
   const [monthlyLoads, setMonthlyLoads]= useState(0);
@@ -150,7 +150,6 @@ const [jacketsDenim, setJacketsDenim] = useState(0);
         jacketsSynthetic,
         jacketsSkinLeather,
         jacketsDown,
-        jacketsDenim,
         monthlyLoads,   
         detergentType,
         tumbleDryLoads,
@@ -161,7 +160,7 @@ const [jacketsDenim, setJacketsDenim] = useState(0);
         trousers,
         jackets,
         denimJeans,
-        
+        dresses,
         secondHandTShirts,
         secondHandKnitwear,
         secondHandDresses,
@@ -268,7 +267,7 @@ const [jacketsDenim, setJacketsDenim] = useState(0);
         jacketsSynthetic,
         jacketsSkinLeather,
         jacketsDown,
-        jacketsDenim
+     
       ];
   
       const noneSelected = step0Fields.every(
@@ -454,7 +453,7 @@ const [jacketsDenim, setJacketsDenim] = useState(0);
   { label: "Synthetic Leather", value: jacketsSynthetic, setValue: setJacketsSynthetic },
   { label: "Skin Leather", value: jacketsSkinLeather, setValue: setJacketsSkinLeather },
   { label: "Down", value: jacketsDown, setValue: setJacketsDown },
-  { label: "Denim", value: jacketsDenim, setValue: setJacketsDenim },
+
 ].map((material, index) => {
   const label =
     material.label === "Down" ? (
@@ -513,7 +512,7 @@ const [jacketsDenim, setJacketsDenim] = useState(0);
             value={monthlyLoads}
             onChange={(_e, newValue) => setMonthlyLoads(newValue)}
             min={0}
-            max={30}
+            max={12}
             step={1}
             valueLabelDisplay="auto"
             sx={{ flexGrow: 1, color: '#D28C41;' }}
@@ -946,7 +945,9 @@ const [jacketsDenim, setJacketsDenim] = useState(0);
     <br />
   </>
 )}
+
         <Heading />
+        
         <Container maxWidth="lg" sx={{ minHeight: '100vh', backgroundColor: '#372f26', color: 'white', py: 5 }}>
           <Paper elevation={10} sx={{ p: isMobile ? 3 : 5, backgroundColor: '#3b332e', borderRadius: '12px' }}>
             <Stepper
