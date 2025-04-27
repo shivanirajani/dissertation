@@ -3,7 +3,6 @@ const cors = require('cors');
 
 const app = express();
 
-const port = process.env.PORT 
 
 // Middleware
 app.use(express.json());
@@ -535,10 +534,5 @@ console.log('Final Ethical Responsibility Impact:', finalEthicalImpact);
   }
 });
 
-if (!process.env.PORT) {
-  throw new Error('PORT environment variable is not set.');
-}
-// Start the server
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
-});
+
+module.exports = app;

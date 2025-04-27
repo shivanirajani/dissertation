@@ -174,7 +174,7 @@ const [jacketsDown, setJacketsDown] = useState(0);
       };
   
       // Send data to the backend
-      const response = await fetch('https://dissertation-egms.onrender.com/backend/server', {
+      const response = await fetch('/api/calculate-footprint', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
