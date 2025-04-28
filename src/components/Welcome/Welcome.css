@@ -2,7 +2,7 @@
 .hero-wrapper{
     color: white;
     position: relative;
-    padding-bottom: 2rem;
+    padding-bottom: -10rem;
     overflow: scroll;
 
 
@@ -26,6 +26,7 @@
 .hero-title{
     position: relative;
     z-index: 1;
+    margin-bottom: 4rem;
 }
 
 .hero-Text{

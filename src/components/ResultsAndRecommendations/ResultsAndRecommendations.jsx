@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
   Box,
@@ -60,7 +60,7 @@ export default function ResultsAndRecommendations() {
   const footprintValue = 90; // Dynamic value between 0–100
 
   const controls = useAnimation();
-  const [displayValue, setDisplayValue] = useState(0);
+
 
   useEffect(() => {
     controls.start({ value: footprintValue, transition: { duration: 1.5, ease: 'easeOut' } });
@@ -209,7 +209,7 @@ export default function ResultsAndRecommendations() {
   const bathVolume = 150; // liters
   const totalWaterSaved = result.totalWaterSaved || 0;
   const bathCount = Math.floor(totalWaterSaved / bathVolume);
-  const showIcons = bathCount; // Show all bathtubs based on full bath equivalents
+
 
 // Assuming result.totalWasteDivertedKg is from your API response
 const wasteDivertedData = result.totalWasteDivertedKg || 0;

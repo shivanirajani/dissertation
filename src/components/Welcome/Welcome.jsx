@@ -2,7 +2,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';  // Import useNavigate
 import { motion } from 'framer-motion';
-import CountUp from 'react-countup';
 import hero from '../../images/hero.jpeg';
 import './Welcome.css';
 
@@ -15,7 +14,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="/#about-wrapper">
+    <section className="hero-wrapper">
       <div className="paddings innerWidth flexCenter hero-container">
         <div className="flexColStart hero-left">
           <div className="hero-title">
@@ -23,7 +22,7 @@ const Hero = () => {
             <motion.h1
               initial={{ y: '4rem', opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 4, type: 'spring' }}
+              transition={{ duration: 1, type: 'spring' }}
             >
               Stitching Sustainability <br />
               With We Got Habits <br />
@@ -43,29 +42,7 @@ const Hero = () => {
               Fashion Footprint Calculator
             </button>
 
-          <div className="flexCenter stats">
-            <div className="flexColStart stat">
-              <span>
-                <CountUp start={0} end={2000} duration={4} />
-                <span>+</span>
-              </span>
-              <p className="secondaryText">New Posts</p>
-            </div>
-            <div className="flexColStart stat">
-              <span>
-                <CountUp start={0} end={700} duration={4} />
-                <span>+</span>
-              </span>
-              <p className="secondaryText">New Members</p>
-            </div>
-            <div className="flexColStart stat">
-              <span>
-                <CountUp start={0} end={110} duration={4} />
-                <span>+</span>
-              </span>
-              <p className="secondaryText">Global Reach</p>
-            </div>
-          </div>
+
         </div>
         <div className="flexCenter hero-right">
           <motion.div

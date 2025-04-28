@@ -3,7 +3,7 @@ const cors = require('cors');
 
 const app = express();
 
-
+const port = 3001;
 // Middleware
 app.use(express.json());
 app.use(cors());
@@ -535,4 +535,7 @@ console.log('Final Ethical Responsibility Impact:', finalEthicalImpact);
 });
 
 
-module.exports = app;
+// Start the server
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
+});

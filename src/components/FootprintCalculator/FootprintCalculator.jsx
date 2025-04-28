@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import {
   Stepper, Step, StepLabel, Box, Typography, Button, Dialog,
   DialogActions, DialogContent, DialogTitle, Container, Paper, useMediaQuery,
@@ -174,7 +174,7 @@ const [jacketsDown, setJacketsDown] = useState(0);
       };
   
       // Send data to the backend
-      const response = await fetch('/api/calculate-footprint', {
+      const response = await fetch('http://localhost:3001/api/calculate-footprint', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
