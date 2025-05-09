@@ -64,7 +64,7 @@ const FashionFootprintCalculator = () => {
     { label: 'Clothing Consumption & Material Choices', icon: <PiTShirt /> },
     { label: 'Clothing Care', icon: <LocalLaundryServiceIcon /> },
     { label: 'Clothing Repair & Longevity', icon: <GiSewingMachine /> },
-    { label: 'Second Hand & Donations', icon: < RecyclingIcon/> },
+    { label: 'Second Hand', icon: < RecyclingIcon/> },
     { label: 'Ethical & Social Responsibility', icon: <RiHandHeartLine /> },
 
   ];
@@ -104,7 +104,7 @@ const [jacketsDown, setJacketsDown] = useState(0);
   const [detergentType, setDetergentType]= useState(0);
   const [tumbleDryLoads, setTumbleDryLoads]= useState(0);
   const [clothingLongevity, setClothingLongevity] = useState(null);
-  const [donationFrequency, setDonationFrequency] = useState(0);
+
 
 
  
@@ -155,7 +155,6 @@ const [jacketsDown, setJacketsDown] = useState(0);
         tumbleDryLoads,
         washTemps,
         clothingLongevity,
-        donationFrequency,
         tShirts,
         trousers,
         jackets,
@@ -754,21 +753,6 @@ const [jacketsDown, setJacketsDown] = useState(0);
       Coats
     </Typography>
     <Counter label="Coats" value={secondHandCoats} setValue={setSecondHandCoats}/>
-
-  
-              <Typography variant="h6" sx={{ mt: 4, mb: 2, fontFamily: "'Urbanist', sans-serif", fontSize: isMobile ? '1rem' : '1.25rem'}}>
-                Q2.&nbsp;&nbsp;How often do you donate or resell clothing instead of throwing it away? <span style={{ color: '#D28C41' }}>*</span>
-              </Typography>
-              <Slider
-                value={donationFrequency}
-                onChange={(_e, newValue) => setDonationFrequency(newValue)}
-                min={0}
-                max={50}
-                step={1}
-                valueLabelDisplay="auto"
-                sx={{ flexGrow: 1, color: '#D28C41' }}
-              />
-              <Typography sx={{fontFamily: "'Urbanist', sans-serif"}}>{donationFrequency} Times/Year</Typography>
             </>
           );
           

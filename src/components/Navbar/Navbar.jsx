@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-scroll";
 import { BiMenuAltRight } from "react-icons/bi";
 import { RxCross2 } from "react-icons/rx";
 import { AiOutlineHome, AiOutlineAim, AiOutlineGlobal } from "react-icons/ai";
-// Ensure the path to logo.png is correct. 
-// If your images folder is inside src, adjust the path accordingly.
-import logo from "../../images/logo.png"; // Adjust this path based on your folder structure
+import logo from "../../images/logo.png"; 
 import "./Navbar.css";
 
 const Navbar = () => {
@@ -37,7 +34,7 @@ const Navbar = () => {
               <img src={logo} alt="Logo" width={110} height={60} className="logo-image" />
             </a>
             <div className="n-logo">
-              <a href="/">
+              <a href="/footprint-calculator">
                 <span className="blog-text">Fashion Footprint Calculator</span>
               </a>
             </div>

@@ -1,16 +1,15 @@
-
 import React from 'react';
-import { useNavigate } from 'react-router-dom';  // Import useNavigate
-import { motion } from 'framer-motion';
-import hero from '../../images/hero.jpeg';
-import './Welcome.css';
+import { useNavigate } from 'react-router-dom';  // Import navigation hook
+import { motion } from 'framer-motion';  // Import motion for animations
+import hero from '../../images/hero.jpeg';  // Hero image
+import './Welcome.css';  // Import styles
 
-const Hero = () => {
-  const navigate = useNavigate();  // Initialize useNavigate hook
+const Welcome = () => {
+  const navigate = useNavigate();  // Initialise navigate hook
 
-  // Function to handle click event for navigation
+  // Navigate to footprint calculator page
   const handleClick = () => {
-    navigate('/footprint-calculator');  // Navigate to the footprint calculator page
+    navigate('/footprint-calculator');
   };
 
   return (
@@ -19,6 +18,7 @@ const Hero = () => {
         <div className="flexColStart hero-left">
           <div className="hero-title">
             <div className="pink-circle" />
+            {/* Animated title */}
             <motion.h1
               initial={{ y: '4rem', opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -33,18 +33,17 @@ const Hero = () => {
               Calculate your impact, rethink your fashion habits
             </span>
           </div>
-            {/* Call handleClick function on button click */}
-            <button 
-              onClick={handleClick} 
-              className="register-button" 
-              style={{ fontFamily: 'Urbanist' }}
-            >
-              Fashion Footprint Calculator
-            </button>
-
-
+          {/* Button for navigation */}
+          <button 
+            onClick={handleClick} 
+            className="register-button" 
+            style={{ fontFamily: 'Urbanist' }}
+          >
+            Fashion Footprint Calculator
+          </button>
         </div>
         <div className="flexCenter hero-right">
+          {/* Animated image */}
           <motion.div
             initial={{ x: '10rem', opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
@@ -59,4 +58,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default Welcome;

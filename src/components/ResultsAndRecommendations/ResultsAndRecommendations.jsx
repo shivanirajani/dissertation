@@ -1,4 +1,4 @@
-import React, {useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
   Box,
@@ -7,7 +7,7 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
-  useMediaQuery
+  useMediaQuery,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import BathtubIcon from '@mui/icons-material/Bathtub';
@@ -24,7 +24,7 @@ import {
 } from 'chart.js';
 import zoomPlugin from 'chartjs-plugin-zoom';
 import Navbar from '../Navbar/Navbar';
-import ClearIcon from '@mui/icons-material/Clear';
+
 
 
 // Register Chart.js components
@@ -57,14 +57,24 @@ export default function ResultsAndRecommendations() {
   const isMobile = useMediaQuery('(max-width:600px)');
   const navigate = useNavigate();
   const { result } = useLocation().state || {};
-  const footprintValue = 90; // Dynamic value between 0–100
+  const performanceMessage = result?.performanceMessage 
+  const finalOverallImpact = result?.finalOverallImpact;
+  const totalWasteDivertedKg = result?.totalWasteDivertedKg;
+  const [displayValue, setDisplayValue] = useState(0);
+
+
 
   const controls = useAnimation();
 
 
   useEffect(() => {
-    controls.start({ value: footprintValue, transition: { duration: 1.5, ease: 'easeOut' } });
-  }, [footprintValue]);
+    // Animate the value based on finalOverallImpact
+    controls.start({
+      value: finalOverallImpact, // Use finalOverallImpact instead of footprintValue
+      transition: { duration: 1.5, ease: 'easeOut' }
+    });
+  }, [finalOverallImpact, controls]); // Add finalOverallImpact as a dependency to trigger reanimation
+  
 
   if (!result) {
     return (
@@ -213,6 +223,18 @@ export default function ResultsAndRecommendations() {
 
 // Assuming result.totalWasteDivertedKg is from your API response
 const wasteDivertedData = result.totalWasteDivertedKg || 0;
+const fashionImpactLevel = result.fashionImpactLevel
+const impactLevel= result.impactLevel
+const finalImpact = result.finalImpact
+const userImpact= result.userImpact
+const finalEthicalImpact = result.finalEthicalImpact
+const fashionPerformanceMessage = result.fashionPerformanceMessage
+const comparisonMessage = result.comparisonMessage
+const feedback= result.feedback
+const steps= result.steps
+const recommendationText = result.recommendationText
+const messsage = result.messsage
+const actionSteps = result.actionSteps
 
 
 
@@ -302,272 +324,571 @@ const barWaste = {
       </Box>
 
 
-      <Box sx={{
+<Box
+  sx={{
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: { xs: 2, sm: 4 },
+    my: 4,
+    width: { xs: '95%', md: '80%' },
+    margin: '0 auto',
+    position: 'relative',
+  }}
+>
+  {/* Progress Bar Section */}
+  <Box sx={{ flex: 1, position: 'relative', minWidth: 0 }}>
+    {/* Marker */}
+    <Box
+      sx={{
+        position: 'absolute',
+        top: '-14px',
+        left: `calc(${finalOverallImpact}%)`,
+        transform: 'translateX(-50%)',
+        width: 0,
+        height: 0,
+        zIndex: 5,
+        borderLeft: '6px solid transparent',
+        borderRight: '6px solid transparent',
+        borderBottom: '8px solid white',
+        transition: 'left 0.5s ease-in-out',
+        boxShadow: '0 2px 6px rgba(0, 0, 0, 0.2)',
+        pointerEvents: 'none',
+      }}
+    />
+
+    {/* Gradient Track */}
+    <Box
+      sx={{
+        height: 20,
+        width: '100%',
+        borderRadius: 10,
+        background: 'linear-gradient(to right, #d50000 0%, #ffeb3b 50%, #00c853 100%)',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        zIndex: 1,
+      }}
+    />
+
+    {/* Fill */}
+    <Box
+      sx={{
+        height: 20,
+        width: `${finalOverallImpact}%`,
+        borderRadius: 10,
+        backgroundColor: 'rgba(0, 0, 0, 0.25)',
+        backdropFilter: 'blur(1px)',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        zIndex: 2,
+        transition: 'width 0.5s ease-in-out',
+      }}
+    />
+
+    {/* Labels */}
+    <Box
+      sx={{
+        position: 'absolute',
+        bottom: { xs: '-45px', sm: '-50px' },
+        left: 0,
+        right: 0,
         display: 'flex',
-        flexDirection: isMobile ? 'row' : 'row', // Ensures side by side on mobile as well
+        justifyContent: 'space-between',
+        fontSize: { xs: '0.6rem', sm: '1rem' },
+        color: 'white',
+        padding: '0 5px',
+        zIndex: 4,
+        textAlign: 'center',
+      }}
+    >
+     {['Poor', 'Lacking', 'Decent', 'Great', 'Outstanding'].map((label) => (
+  <Typography
+    key={label}
+    sx={{
+      width: '30%',
+      fontSize: '0.8rem',
+      textAlign: 'center',
+
+    }}
+  >
+    {label}
+  </Typography>
+))}
+
+    </Box>
+  </Box>
+
+  {/* Circle Indicator */}
+  <motion.div
+    animate={controls}
+    initial={{ value: 0 }}
+    onUpdate={(latest) => setDisplayValue(Math.round(latest.value))}
+  >
+    <Box
+      sx={{
+        width: { xs: 90, sm: 120, md: 150 },
+        height: { xs: 90, sm: 120, md: 150 },
+        borderRadius: '50%',
+        border: '4px solid white',
+        display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        gap: 4,
-        my: 4,
-        width: isMobile ? '90%' : '60%',
-        margin: '0 auto',
-        position: 'relative',
-      }}>
-{/* Left: Progress Bar */}
-<Box sx={{ flexGrow: 1, position: 'relative', width: '100%' }}>
-  {/* Marker */}
-  <Box
-    sx={{
-      position: 'absolute',
-      top: '-14px',
-      left: `calc(${footprintValue}% - 6px)`,
-      width: 0,
-      height: 0,
-      zIndex: 5,
-      borderLeft: '6px solid transparent',
-      borderRight: '6px solid transparent',
-      borderBottom: '8px solid white',
-      transition: 'left 0.5s ease-in-out',
-    }}
-  />
-
-  {/* Gradient Track */}
-  <Box sx={{
-    height: 20,
-    width: '100%',
-    borderRadius: 10,
-    background: 'linear-gradient(to right, #00c853 0%, #ffeb3b 50%, #d50000 100%)',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    zIndex: 1,
-  }} />
-
-  {/* Overlay Fill */}
-  <Box sx={{
-    height: 20,
-    width: `${footprintValue}%`,
-    borderRadius: 10,
-    backgroundColor: 'rgba(0, 0, 0, 0.25)',
-    backdropFilter: 'blur(1px)',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    zIndex: 2,
-    transition: 'width 0.5s ease-in-out',
-  }} />
-
-  
-<br></br> <br></br>
-  {/* Labels */}
-  <Box sx={{
-    position: 'absolute',
-    bottom: isMobile? '-70px': '-10px',
-    left: 0,
-    right: 0,
-    display: 'flex',
-    justifyContent: 'space-between',
-    fontSize: isMobile? '0.2rem' : '1.5rem',
-    color: 'white',
-    padding: '0 5px',
-    zIndex: 4,
-    textAlign: 'center',
-  }}>
-    <Typography sx={{ color: "#d3c7c8", width: '20%' }}>Very Low Impact</Typography>
-    <Typography sx={{ color: "#d3c7c8", width: '20%' }}>Low Impact</Typography>
-    <Typography sx={{ color: "#d3c7c8", width: '20%' }}>Average</Typography>
-    <Typography sx={{ color: "#d3c7c8", width: '20%' }}>High Impact</Typography>
-    <Typography sx={{ color: "#d3c7c8", width: '20%' }}>Very High Impact</Typography>
-  </Box>
+        flexDirection: 'column',
+        color: 'white',
+        fontWeight: 'bold',
+        textAlign: 'center',
+        fontSize: { xs: '0.75rem', sm: '1rem' },
+        boxShadow: '0 0 15px rgba(255,255,255,0.3)',
+        background: 'rgba(0, 0, 0, 0.25)',
+        backdropFilter: 'blur(4px)',
+        transition: 'all 0.3s ease-in-out',
+        minWidth: { xs: 90, sm: 120, md: 150 },
+      }}
+    >
+      <div
+        style={{
+          fontSize: '0.75rem',
+          textShadow: '0 0 10px rgba(255, 255, 255, 0.5)',
+          margin: '0 6px',
+        }}
+      >
+        Average Footprint Score:
+      </div>
+      <div
+        style={{
+          fontSize: '1.2rem',
+          fontWeight: 'bold',
+          textShadow: '0 0 10px rgba(255, 255, 255, 0.5)',
+        }}
+      >
+        {finalOverallImpact}%
+      </div>
+    </Box>
+  </motion.div>
 </Box>
 
-      </Box>
 
 
  <br></br>  <br></br>  <br></br>  <br></br>
 
-      <Container>
-        {[
-          'Clothing Consumption and Materials',
-          'Clothing Care',
-          'Clothing Repair & Longevity',
-          'Second Hand & Donations',
-          'Ethical & Social Responsibility',
-        ].map((title, i) => (
-          <Accordion key={i} sx={{ bgcolor: '#3b332e', color: 'white', mb: 2 }}>
-            <AccordionSummary expandIcon={<ExpandMoreIcon sx={{ color: 'white' }} />}>
-              <Typography sx={{ fontFamily: 'Urbanist', fontWeight: 'bold', fontSize: isMobile ? '1.25rem' : '1.5rem' }}>
-                {title} 
-              </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              {title === 'Clothing Consumption and Materials' && (
-                <>
-                  <Typography align="center" sx={{ fontFamily: 'Urbanist', fontWeight: 'bold', mb: 2, fontSize: isMobile ? '1rem' : '1.5rem'}}>
-                    CO₂ Emissions by Item and Material
-                  </Typography>
-                  <Typography align="center" color="#fff" sx={{ fontFamily: 'Urbanist', fontSize: isMobile ? '1rem' : '1.25rem', mb: 3 }}>
-                    This chart shows the CO₂ emissions from the clothing purchases you made in the last 12 months.
-                  </Typography>
-                  <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1 }}
-                    style={{
-                      height: isMobile ? 400 : 600,
-                      width: '100%',
-                      padding: '2rem',
-                      borderRadius: '1.5rem',
-                      background: 'rgba(255,255,255,0.05)',
-                      backdropFilter: 'blur(10px)',
-                      boxShadow: '0 8px 30px rgba(0,0,0,0.2)'
-                    }}
-                  >
-                    <Bar data={barData} options={barOptions} />
-                  </motion.div>
-                </>
-              )}
+ <Container>
+  {[
+    'Clothing Consumption and Materials',
+    'Clothing Care',
+    'Clothing Repair & Longevity',
+    'Second Hand',
+    'Ethical & Social Responsibility',
+  ].map((title, i) => (
+    <Accordion key={i} sx={{ bgcolor: '#3b332e', color: 'white', mb: 2 }}>
+   <AccordionSummary expandIcon={<ExpandMoreIcon sx={{ color: 'white' }} />}>
+  <Typography
+    sx={{
+      fontFamily: 'Urbanist',
+      fontWeight: 'bold',
+      fontSize: isMobile ? '1.25rem' : '1.5rem',
+      display: 'flex', // Use flex to align title and impact levels horizontally
+      justifyContent: 'center', // Center them horizontally
+      alignItems: 'center', // Align items vertically
+    }}
+  >
+    {title}
 
-              {title === 'Clothing Care' && (
+    {/* Conditionally show fashionImpactLevel next to the title if it's 'Clothing Consumption and Materials' */}
+    {title === 'Clothing Consumption and Materials' && fashionImpactLevel && (
+      <span
+        style={{
+          marginLeft: '10px', // Space between the title and fashionImpactLevel
+          fontSize: '1.25rem',
+          fontWeight: 'normal',
+          color: 'lightgrey',
+        }}
+      >
+        {fashionImpactLevel}
+      </span>
+    )}
+
+    {/* Conditionally show impactLevel next to the title if it's 'Clothing Care' */}
+    {title === 'Clothing Care' && impactLevel && (
+      <span
+        style={{
+          marginLeft: '10px', // Space between the title and impactLevel
+          fontSize: '1.25rem',
+          fontWeight: 'normal',
+          color: 'lightgrey',
+        }}
+      >
+        {impactLevel}
+      </span>
+    )}
+
+   
+    {title === 'Clothing Repair & Longevity' && finalImpact && (
+      <span
+        style={{
+          marginLeft: '10px', // Space between the title and secondHandImpactLevel
+          fontSize: '1.25rem',
+          fontWeight: 'normal',
+          color: 'lightgrey',
+        }}
+      >
+        {finalImpact}
+      </span>
+    )}
+
+
+{title === 'Second Hand' &&  userImpact && (
+      <span
+        style={{
+          marginLeft: '10px',
+          fontSize: '1.25rem',
+          fontWeight: 'normal',
+          color: 'lightgrey',
+        }}
+      >
+        {userImpact}
+      </span>
+    )}
+    
+
+
+    {/* Conditionally show impactLevel next to the title if it's 'Clothing Care' */}
+    {title === 'Ethical & Social Responsibility' && finalEthicalImpact  && (
+      <span
+        style={{
+          marginLeft: '10px', // Space between the title and impactLevel
+          fontSize: '1.25rem',
+          fontWeight: 'normal',
+          color: 'lightgrey',
+        }}
+      >
+        {finalEthicalImpact}
+      </span>
+    )}
+
+  </Typography>
+</AccordionSummary>
+
+
+<AccordionDetails>
+  {title === 'Clothing Consumption and Materials' && (
+    <>
+        {/* Section Title */}
+    <Typography
+      variant="h6"
+      color="#fff"
+      sx={{
+        fontFamily: 'Urbanist',
+        fontWeight: 'bold',
+        fontSize: isMobile ? '1rem' : '1.3rem',
+        mb: 1,
+      }}
+    >
+      Results and Recommendations
+    </Typography>
+      <Typography
+        align="justify"
+        color="#fff"
+        sx={{
+          fontFamily: 'Urbanist',
+          fontSize: isMobile ? '0.9rem' : '1.1rem',  // Smaller font size
+          mb: 2,
+          whiteSpace: 'pre-line',  
+
+        }}
+      >
+        {fashionPerformanceMessage}
+      </Typography>
+
+      {/* Comparison Message */}
+      <Typography
+        align="left"
+        color="#fff"
+        sx={{
+          fontFamily: 'Urbanist',
+          fontSize: isMobile ? '0.9rem' : '1.1rem',  // Smaller font size
+          mb: 3,
+          whiteSpace: 'pre-line', 
+
+        }}
+      >
+        {comparisonMessage}
+      </Typography>
+
+      <Typography
+  sx={{
+    fontFamily: 'Urbanist',
+    mb: 2,
+    fontSize: isMobile ? '1rem' : '1.5rem',
+  }}
+>
+  CO₂ Emissions by Item and Material
+</Typography>
+
+<Typography
+  color="#fff"
+  sx={{
+    fontFamily: 'Urbanist',
+    fontSize: isMobile ? '1rem' : '1.25rem',
+    mb: 3,
+  }}
+>
+  This chart shows the CO₂ emissions from the clothing purchases you made in the last 12 months.
+</Typography>
+
+
+      {/* Chart (motion animation) */}
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+        style={{
+          height: isMobile ? 400 : 600,
+          width: '100%',
+          padding: '2rem',
+          borderRadius: '1.5rem',
+          background: 'rgba(255,255,255,0.05)',
+          backdropFilter: 'blur(10px)',
+          boxShadow: '0 8px 30px rgba(0,0,0,0.2)',
+        }}
+      >
+        <Bar data={barData} options={barOptions} />
+      </motion.div>
+    </>
+
+        )}
+        
+
+              {title === 'Clothing Care' &&  (
                 <>
-                  <Typography align="center" sx={{ fontFamily: 'Urbanist', fontWeight: 'bold', mb: 2, fontSize: isMobile ? '1rem' : '1.5rem'}}>
-                    Laundry CO₂ Breakdown
-                  </Typography>
-                  <Typography align="center" sx={{ mb: 3, fontFamily: 'Urbanist', fontSize: isMobile ? '1rem' : '1.25rem' }}>
-                    This chart shows the breakdown of emissions from washing and drying your clothes.
-                  </Typography>
-                  <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1 }}
-                    style={{
-                      maxWidth: isMobile ? 300 : 400,
-                      margin: '0 auto',
-                      padding: '1rem',
-                      borderRadius: '1rem',
-                      background: 'rgba(255,255,255,0.05)',
-                      backdropFilter: 'blur(10px)',
-                      boxShadow: '0 4px 20px rgba(0,0,0,0.15)'
+               {/* Section Title */}
+                  <Typography
+                    variant="h6"
+                    color="#fff"
+                    sx={{
+                      fontFamily: 'Urbanist',
+                      fontWeight: 'bold',
+                      fontSize: isMobile ? '1rem' : '1.3rem',
+                      mb: 1,
                     }}
                   >
-                    <Doughnut data={donutData} options={donutOptions} />
-                  </motion.div>
+                    Results and Recommendations
+
+                  </Typography>
+                    <Typography
+                      align="left"
+                      color="#fff"
+                      sx={{
+                        fontFamily: 'Urbanist',
+                        fontSize: isMobile ? '0.9rem' : '1.1rem',  // Smaller font size
+                        mb: 3,
+                        whiteSpace: 'pre-line',  
+                      }}
+                    >
+                      {performanceMessage}
+                    </Typography>
+
+
+
+                    <Typography
+  sx={{
+    fontFamily: 'Urbanist',
+    fontWeight: 'bold',
+    mb: 2,
+    fontSize: isMobile ? '1rem' : '1.5rem',
+  }}
+>
+  Laundry CO₂ Breakdown
+</Typography>
+
+<Typography
+  sx={{
+    mb: 3,
+    fontFamily: 'Urbanist',
+    fontSize: isMobile ? '1rem' : '1.25rem',
+  }}
+>
+  This chart shows the breakdown of emissions from washing and drying your clothes.
+</Typography>
+
+<motion.div
+  initial={{ opacity: 0, y: 40 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 1 }}
+  style={{
+    maxWidth: isMobile ? 300 : 400,
+    marginLeft: 0,
+    padding: '1rem',
+    borderRadius: '1rem',
+    background: 'rgba(255,255,255,0.05)',
+    backdropFilter: 'blur(10px)',
+    boxShadow: '0 4px 20px rgba(0,0,0,0.15)'
+  }}
+>
+  <Doughnut data={donutData} options={donutOptions} />
+</motion.div>
+
                 </>
               )}
 
 {title === 'Clothing Repair & Longevity' && (
   <>
-    <Typography
-      align="center"
-      sx={{
-        fontFamily: 'Urbanist',
-        fontWeight: 'bold',
-        mb: 2,
-        fontSize: isMobile ? '1rem' : '1.5rem',
-      }}
-    >
-      Water Saved by Extending Clothing Lifespan
-    </Typography>
-
-    <Typography
-      align="center"
-      sx={{
-        mb: 3,
-        fontFamily: 'Urbanist',
-        fontSize: isMobile ? '1rem' : '1.25rem',
-      }}
-    >
-      Thanks to your clothing repair and reuse habits, you’ve saved the equivalent of{' '}
-      <strong>{bathCount}</strong> bathtubs of water!
-    </Typography>
-
-    <Box
-      sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        gap: 2, // space between the icon and the number
-        background: 'rgba(255,255,255,0.05)',
-        backdropFilter: 'blur(10px)',
-        borderRadius: '1rem',
-        p: 2,
-        boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
-      }}
-    >
-      <BathtubIcon sx={{ fontSize: isMobile ? 28 : 36, color: '#a1eafb' }} />
-      <Typography
+<Typography
+  variant="h6"
+  color="#fff"
   sx={{
     fontFamily: 'Urbanist',
-    fontSize: isMobile ? '1rem' : '1.25rem',
-    color: '#a1eafb',
-    display: 'inline-flex',
-    alignItems: 'center', // Aligns the icon and text
+    fontWeight: 'bold',
+    fontSize: isMobile ? '1rem' : '1.3rem',
+    mb: 1,
   }}
 >
-  <ClearIcon sx={{ verticalAlign: 'middle', marginBottom: '-2px' }} /> 
-  {bathCount}
+  Results and Recommendations
+</Typography>
+<Typography
+  sx={{
+    fontFamily: 'Urbanist',
+    fontWeight: 'bold',
+    mb: 2,
+    fontSize: isMobile ? '1rem' : '1.1rem',
+  }}
+>
+  Water Saved by Extending Clothing Lifespan through Repair
+</Typography>
+<Typography
+  sx={{
+    mb: 3,
+    fontFamily: 'Urbanist',
+    fontSize: isMobile ? '1rem' : '1.1rem',
+    display: 'inline-flex',
+    alignItems: 'center',
+  }}
+>
+  You have saved the equivalent of
+  <Box component="span" sx={{ ml: 0.5, mr: 0.5 }}>
+    <strong>{bathCount}</strong>
+  </Box>
+  bathtubs of water!
+  <BathtubIcon sx={{ fontSize: isMobile ? 28 : 36, color: '#a1eafb', marginLeft: '8px' }} />
 </Typography>
 
-    </Box>
-                  <Typography
-                    align="center"
-                    sx={{
-                      fontFamily: 'Urbanist',
-                      fontWeight: 'bold',
-                      mt: 4,
-                      mb: 1,
-                      fontSize: isMobile ? '1rem' : '1.25rem'
-                    }}
-                  >
-                    🌍 **Social and Ethical Benefits of Clothing Repair & Longevity**
-                  </Typography>
+<Typography
+                      align="left"
+                      color="#fff"
+                      sx={{
+                        fontFamily: 'Urbanist',
+                        fontSize: isMobile ? '0.9rem' : '1.1rem',  // Smaller font size
+                        mb: 3,
+                        whiteSpace: 'pre-line',  
+                   
+                      }}
+                    >
+                      {messsage}
+                    </Typography>
 
-                  <ul style={{ textAlign: 'left', maxWidth: 700, margin: '0 auto', color: '#fff', fontFamily: 'Urbanist', fontSize: isMobile ? '1rem' : '1.15rem' }}>
-                    <li><strong>Reducing water usage:</strong> By repairing and extending the lifespan of your clothes, you're not just saving water from washing, you're also preventing the massive amounts of water used in clothing production. For example, it takes over 2,700 liters of water to produce just one cotton t-shirt. Every repair and reuse decision helps conserve this precious resource.</li>
-                    <li><strong>Lowering demand for fast fashion:</strong> The fast fashion industry uses millions of liters of water in the production of clothing. By choosing to extend the life of your garments, you are directly contributing to a decrease in demand for new garments and the water-intensive processes involved in creating them.</li>
-                    <li><strong>Protecting communities with limited access to clean water:</strong> The textile industry is a major consumer of water in regions where access to clean water is already scarce. By saving water through clothing repair, you're contributing to preserving this vital resource for communities that need it most.</li>
-                    <li><strong>Empowering ethical practices:</strong> By supporting repair over fast fashion, you help reduce the environmental damage caused by water-intensive garment manufacturing processes, which often take place in countries with poor labor practices and exploitative working conditions.</li>
-                    <li><strong>Promoting a circular economy:</strong> Repairing and reusing your clothing is a powerful way to foster a circular economy, where water, materials, and resources are kept in use for as long as possible, helping to protect the environment and ensure fair labor practices across the supply chain.</li>
-                  </ul>
+                    <Typography
+                      align="left"
+                      color="#fff"
+                      sx={{
+                        fontFamily: 'Urbanist',
+                        fontSize: isMobile ? '0.9rem' : '1.1rem',  // Smaller font size
+                        mb: 3,
+                        whiteSpace: 'pre-line',  
+          
+                      }}
+                    >
+                      {actionSteps}
+                    </Typography>                    
 
-                  <Typography
-                    align="center"
-                    sx={{
-                      fontFamily: 'Urbanist',
-                      fontStyle: 'italic',
-                      mt: 3,
-                      fontSize: isMobile ? '0.9rem' : '1.1rem',
-                      color: '#bbb'
-                    }}
-                  >
-                    Your conscious decision to repair, reuse, and extend the life of your clothes helps save water, protect the environment, and promote a fairer, more ethical world. Every little action counts!
-                  </Typography>
+
+
+
+
+
                 </>
               )}
 
-              {title === 'Second Hand & Donations' && (
+              {title === 'Second Hand' && (
                 <>
                   <Typography
-                    align="center"
+                    variant="h6"
+                    color="#fff"
                     sx={{
                       fontFamily: 'Urbanist',
                       fontWeight: 'bold',
-                      mb: 2,
-                      fontSize: isMobile ? '1rem' : '1.5rem'
+                      fontSize: isMobile ? '1rem' : '1.3rem',
+                      mb: 1,
                     }}
                   >
-                    Waste Diverted Through Second Hand 
+                    Results and Recommendations
+
                   </Typography>
+
                   <Typography
-                    align="center"
+                    variant="h6"
+                    color="#fff"
                     sx={{
-                      mb: 3,
                       fontFamily: 'Urbanist',
-                      fontSize: isMobile ? '1rem' : '1.25rem'
+                      fontSize: isMobile ? '1rem' : '1.1rem',
+                      mb: 1,
                     }}
                   >
-                    This shows the amount of waste you've diverted by donating or buying second hand.
+                By buying second hand items, you have diverted <strong>{totalWasteDivertedKg}kg</strong> of waste from landfills.
+
+
                   </Typography>
+                 <Typography
+                      align="left"
+                      color="#fff"
+                      sx={{
+                        fontFamily: 'Urbanist',
+                        fontSize: isMobile ? '0.9rem' : '1.1rem',  // Smaller font size
+                        mb: 3,
+                        whiteSpace: 'pre-line',  
+                 
+                      }}
+                    >
+                     
+                      {feedback}
+                    
+                    </Typography>
+
+                    <Typography
+                      align="left"
+                      color="#fff"
+                      sx={{
+                        fontFamily: 'Urbanist',
+                        fontSize: isMobile ? '0.9rem' : '1.1rem',  // Smaller font size
+                        mb: 3,
+                        whiteSpace: 'pre-line',  
+           
+                      }}
+                    >
+                      {steps}
+                    </Typography>
+            <Typography
+  sx={{
+    fontFamily: 'Urbanist',
+    fontWeight: 'bold',
+    mb: 2,
+    fontSize: isMobile ? '1em' : '1.5rem'
+  }}
+>
+  Waste Diverted Through Buying From Second Hand 
+</Typography>
+
+<Typography
+  sx={{
+    mb: 3,
+    fontFamily: 'Urbanist',
+    fontSize: isMobile ? '1rem' : '1.25rem'
+  }}
+>
+  This shows the amount of waste you've diverted by buying second hand.
+</Typography>
+
                   <motion.div
                     initial={{ opacity: 0, y: 40 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -586,9 +907,104 @@ const barWaste = {
                   </motion.div>
                 </>
               )}
+                          {title === 'Ethical & Social Responsibility' && (
+                <>
+                  <Typography
+                      align="left"
+                      color="#fff"
+                      sx={{
+                        fontFamily: 'Urbanist',
+                        fontSize: isMobile ? '0.9rem' : '1.1rem',  // Smaller font size
+                        mb: 3,
+                        whiteSpace: 'pre-line',  
+                      }}
+                    >
+                      {recommendationText}
+                    </Typography>
+    
+                </>
+              )}
             </AccordionDetails>
           </Accordion>
         ))}
+      
+
+<br></br> <br></br>
+        {/* FAQ Section */}
+<Typography
+  variant="h5"
+  color="#fff"
+  sx={{
+    fontFamily: 'Urbanist',
+    fontWeight: 'bold',
+    textAlign: 'left',
+    paddingLeft: '16px',
+    mb: 3,
+  }}
+>
+  Frequently Asked Questions
+</Typography>
+
+<Container>
+  {[
+    {
+      question: 'What is the Fashion Footprint Calculator?',
+      answer:
+        'The Fashion Footprint Calculator is a tool designed to help you understand the environmental, social, and ethical impact of your clothing choices. It evaluates your habits, such as clothing consumption, laundry practices, and second-hand purchases, to provide actionable recommendations for reducing your footprint.',
+    },
+    {
+      question: 'How is the Average Footprint Score calculated?',
+      answer:
+        'The Average Footprint Score is calculated based on your responses to the Fashion Footprint Calculator. It considers factors such as CO₂ emissions from clothing materials, laundry habits, water savings from repairs, and waste diverted through second-hand purchases. Each factor is weighted to provide a comprehensive score ranging from Poor to Outstanding.',
+    },
+    {
+      question: 'What do the categories (Poor, Lacking, Decent, Great and Outstanding mean?',
+      answer:
+        'These categories represent your overall performance in terms of sustainability. "Poor" indicates a high environmental and social impact, while "Outstanding" reflects minimal impact and highly sustainable practices. The categories help you understand where you stand and how you can improve.',
+    },
+    {
+      question: 'Where can I find my average Fashion Footprint Score?',
+      answer:
+      'Your Fashion Footprint Score is displayed in two ways: as an average score and as individual scores for each category. The average score is shown at the top of the Results and Recommendations page, represented by a visual scale indicator, which ranges from Poor to Outstanding, and a percentage value inside a circular indicator. This helps you understand your overall performance. The individual scores for each category, such as Clothing Care or Second Hand, are displayed next to the category titles in the accordion sections. These scores provide a detailed breakdown of your performance in specific areas.',
+    },
+  
+  ].map((faq, index) => (
+    <Accordion key={index} sx={{ bgcolor: '#3b332e', color: 'white', mb: 2 }}>
+      <AccordionSummary expandIcon={<ExpandMoreIcon sx={{ color: 'white' }} />}>
+        <Typography
+          sx={{
+            fontFamily: 'Urbanist',
+            fontWeight: 'bold',
+            fontSize: isMobile ? '1rem' : '1.25rem',
+          }}
+        >
+          {faq.question}
+        </Typography>
+      </AccordionSummary>
+      <AccordionDetails>
+        <Typography
+          sx={{
+            fontFamily: 'Urbanist',
+            fontSize: isMobile ? '0.9rem' : '1.1rem',
+            color: '#fff',
+          }}
+        >
+          {faq.answer}
+        </Typography>
+      </AccordionDetails>
+    </Accordion>
+  ))}
+</Container>
+
+{/* Export Results Button */}
+<button 
+  className="register-button" 
+  style={{ fontFamily: 'Urbanist', marginTop: '20px' }} // Adjust the margin value as needed
+>
+  Export Results
+</button>
+
+
       </Container>
     </>
   );
